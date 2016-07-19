@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`co-dice`
+Six-sided dice
+
+@demo demo/index.html 
+-->
+
+<dom-module id="co-dice">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'co-dice',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'co-dice',
+        },
+      },
+
+    });
+  </script>
+</dom-module>

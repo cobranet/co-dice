@@ -1,0 +1,83 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`co-dice`
+Six-sided dice
+
+@demo demo/index.html 
+-->
+
+<dom-module id="co-dice">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h1>Test</h1>
+    <span>
+    <svg width$="{{dicesize}}" height$="{{dicesize}}" width$="{{dicesize}}" class="dice">
+      <rect fill$="{{color}}"
+	    rx$= "{{part(dicesize,8)}}"
+	    ry$= "{{part(dicesize,8)}}"
+	    width$="{{dicesize}}"
+	    height$="{{dicesize}}"
+	    >
+      </rect>
+      <circle cy$="{{cy(dicesize,4)}}",
+	      cx$="{{cx(dicesize,4)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,4,color,dotcolor)}}">
+      </circle>	
+      <circle cy$="{{cy(dicesize,1)}}",
+	      cx$="{{cx(dicesize,1)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,1,color,dotcolor)}}">
+      </circle>	
+      <circle cy$="{{cy(dicesize,2)}}",
+	      cx$="{{cx(dicesize,2)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,2,color,dotcolor)}}">
+      </circle>	
+      <circle cy$="{{cy(dicesize,3)}}",
+	      cx$="{{cx(dicesize,3)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,3,color,dotcolor)}}">
+      </circle>	
+      <circle cy$="{{cy(dicesize,5)}}",
+	      cx$="{{cx(dicesize,5)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,5,color,dotcolor)}}">
+      </circle>	
+      <circle cy$="{{cy(dicesize,6)}}",
+	      cx$="{{cx(dicesize,6)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,6,color,dotcolor)}}">
+      </circle>	
+      <circle cy$="{{cy(dicesize,7)}}",
+	      cx$="{{cx(dicesize,7)}}",
+	      r$="{{part(dicesize,9)}}"
+	      fill$="{{ccolor(value,7,color,dotcolor)}}">
+      </circle>	
+    </svg>
+    <span>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'co-dice',
+
+      properties: {
+          dicesize: {
+              type: Number,
+              value: 50,
+          },
+          value: {
+              type: Number,
+              value: 6,
+          }
+      }
+    });
+  </script>
+</dom-module>
