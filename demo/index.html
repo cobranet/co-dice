@@ -10,20 +10,19 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
     <link rel="import" href="../co-dice.html">
-
-    <style is="custom-style" include="demo-pages-shared-styles">
+    <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
     </style>
   </head>
   <body>
-
-    <div class="vertical-section-container centered">
-      <h3>Basic co-dice Demo</h3>
-      <demo-snippet>
-        <template>
-          <co-dice></co-dice>
-        </template>
-      </demo-snippet>
-    </div>
-
+      <div class="vertical-section-container centered">
+	  <h3>Basic co-dice Demo</h3>
+	  <demo-snippet class="horizontal">
+              <template>
+		  <co-dice dicesize="60" value="3" color="red" dotcolor="white"  ></co-dice>
+		  <co-dice dicesize="30" value="4" color="green" dotcolor="black"></co-dice>
+		  <co-dice dicesize="20" value="6" color="navy" dotcolor="red"></co-dice>
+              </template>
+	  </demo-snippet>
+      </div>
   </body>
 </html>
