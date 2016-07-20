@@ -2,4 +2,4 @@
 
 Six-sided dice
 
-## See [DEMO] (https://www.npmjs.com/package/polymer-cli)
+## See [DEMO] (https://cobranet.github.io/co-dice/components/co-dice/)
