@@ -17,46 +17,46 @@ Six-sided dice
     <span>
     <svg width$="{{dicesize}}" height$="{{dicesize}}" width$="{{dicesize}}" class="dice">
       <rect fill$="{{color}}"
-	    rx$= "{{part(dicesize,8)}}"
-	    ry$= "{{part(dicesize,8)}}"
+	    rx$= "{{_part(dicesize,8)}}"
+	    ry$= "{{_part(dicesize,8)}}"
 	    width$="{{dicesize}}"
 	    height$="{{dicesize}}"
 	    >
       </rect>
-      <circle cy$="{{cy(dicesize,4)}}",
-	      cx$="{{cx(dicesize,4)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,4,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,4)}}",
+	      cx$="{{_cx(dicesize,4)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,4,color,dotcolor)}}">
       </circle>	
-      <circle cy$="{{cy(dicesize,1)}}",
-	      cx$="{{cx(dicesize,1)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,1,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,1)}}",
+	      cx$="{{_cx(dicesize,1)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,1,color,dotcolor)}}">
       </circle>	
-      <circle cy$="{{cy(dicesize,2)}}",
-	      cx$="{{cx(dicesize,2)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,2,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,2)}}",
+	      cx$="{{_cx(dicesize,2)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,2,color,dotcolor)}}">
       </circle>	
-      <circle cy$="{{cy(dicesize,3)}}",
-	      cx$="{{cx(dicesize,3)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,3,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,3)}}",
+	      cx$="{{_cx(dicesize,3)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,3,color,dotcolor)}}">
       </circle>	
-      <circle cy$="{{cy(dicesize,5)}}",
-	      cx$="{{cx(dicesize,5)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,5,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,5)}}",
+	      cx$="{{_cx(dicesize,5)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,5,color,dotcolor)}}">
       </circle>	
-      <circle cy$="{{cy(dicesize,6)}}",
-	      cx$="{{cx(dicesize,6)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,6,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,6)}}",
+	      cx$="{{_cx(dicesize,6)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,6,color,dotcolor)}}">
       </circle>	
-      <circle cy$="{{cy(dicesize,7)}}",
-	      cx$="{{cx(dicesize,7)}}",
-	      r$="{{part(dicesize,9)}}"
-	      fill$="{{ccolor(value,7,color,dotcolor)}}">
+      <circle cy$="{{_cy(dicesize,7)}}",
+	      cx$="{{_cx(dicesize,7)}}",
+	      r$="{{_part(dicesize,9)}}"
+	      fill$="{{_ccolor(value,7,color,dotcolor)}}">
       </circle>	
     </svg>
     <span>
@@ -85,7 +85,7 @@ Six-sided dice
 	      value: 'red'
 	  }
       },
-	ccolor: function(value,pos,color,dotcolor){
+	_ccolor: function(value,pos,color,dotcolor){
 	    if ( (value == 1 || value == 5 || value == 3 ) && pos == 4 ){
 		return dotcolor;
 	    }
@@ -101,7 +101,7 @@ Six-sided dice
 	    }
 	    return color;
 	},
-	cx: function(dicesize,pos){
+	_cx: function(dicesize,pos){
 	    if (pos == 4 ){
 		return dicesize / 2;
 	    }
@@ -112,7 +112,7 @@ Six-sided dice
 		return dicesize - dicesize / 4;
 	    }
 	},
-	cy: function(dicesize,pos){
+	_cy: function(dicesize,pos){
 	    if ( pos == 2 || pos == 4 || pos == 6) {
 		return dicesize / 2;
 	    }
@@ -123,14 +123,12 @@ Six-sided dice
 		return dicesize - dicesize/4;
 	    }
 	},
-	part: function(dicesize,p){
+	_part: function(dicesize,p){
 	    return (+ dicesize)/p;
 	},
-	r: function(dicesize){
-	    return (+ dicesize)/6;
-	},
-	dot: function(dicesize){
-	    return (+ dicesize)/8;
+	roll: function(value){
+	    alert('tu sam');
+	    this.value = Math.floor((Math.random() * 6) + 1);
 	}
     });
   </script>
