@@ -11,20 +11,40 @@
 
     <link rel="import" href="../co-dice.html">
     <style is="custom-style" include="demo-pages-shared-styles">
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+      body {
+        max-width: 768px;
+        margin: 0 auto;
+      }
+      @media screen and (max-width: 768px) {
+        body {
+          width: calc(100% - 50px);
+          margin: 1px;
+        }
+      }
     </style>
   </head>
   <body>
-      <div>
-	  <h3>Demo</h3>
+	  <h3>Demo:</h3>
 	  <demo-snippet class="horizontal-section-container">
-              <template>
-		  <div>
-		  <co-dice dicesize="20" value="3" color="red" dotcolor="white" ></co-dice>
-		  <co-dice dicesize="130" value="4" color="green" dotcolor="black"></co-dice>
-		  <co-dice dicesize="60" value="6" color="navy" dotcolor="red"></co-dice>
-		  </div>
-              </template>
+      <template>
+        <co-dice dicesize="20" value="3"></co-dice>
+        <co-dice class="green" dicesize="130" value="4"></co-dice>
+        <co-dice class="navy" dicesize="60" value="6"></co-dice>
+        
+        <style is="custom-style">
+          .green {
+            --dice-fill-color: green;
+            --dice-dot-fill-color: black;
+          }
+          .navy {
+            --dice-fill-color: navy;
+            --dice-dot-fill-color: red;
+          }
+        </style>
+      </template>
 	  </demo-snippet>
-      </div>
   </body>
 </html>

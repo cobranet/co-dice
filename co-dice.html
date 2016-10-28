@@ -1,135 +1,193 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-`co-dice`
-Six-sided dice
+  `<co-dice>`
+  Six-sided dice
+  
+  ### Example
+  
+    <co-dice dicesize="20" value="3"></co-dice>
 
-@demo demo/index.html 
+  ### Styling
+    
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--dice-fill-color` | Background color of the dice. | `red`
+`--dice-dot-fill-color` | Dot color within the dice. | `#FFF`
+
+  @element l2t-context-menu
+  @demo demo/index.html 
 -->
 
 <dom-module id="co-dice">
+  <style>
+    :host {
+      display: block;
+    }
+    *[hidden] {
+      display: none;
+    }
+    .dice rect {
+      fill: var(--dice-fill-color, red)
+    }
+    .dice circle {
+      fill: var(--dice-dot-fill-color, #FFF)
+    }
+  </style>
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <span>
     <svg width$="{{dicesize}}" height$="{{dicesize}}" width$="{{dicesize}}" class="dice">
-      <rect fill$="{{color}}"
-	    rx$= "{{_part(dicesize,8)}}"
-	    ry$= "{{_part(dicesize,8)}}"
-	    width$="{{dicesize}}"
-	    height$="{{dicesize}}"
-	    >
-      </rect>
-      <circle cy$="{{_cy(dicesize,4)}}",
-	      cx$="{{_cx(dicesize,4)}}",
+      <rect 
+        rx$= "{{_part(dicesize,8)}}"
+        ry$= "{{_part(dicesize,8)}}"
+        width$="{{dicesize}}"
+        height$="{{dicesize}}"
+        >
+      </rect>	
+      <circle 
+        hidden$="{{_hideDots(value, 1)}}"
+        cy$="{{_cy(dicesize,1)}}"
+	      cx$="{{_cx(dicesize,1)}}"
 	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,4,color,dotcolor)}}">
+        >
       </circle>	
-      <circle cy$="{{_cy(dicesize,1)}}",
-	      cx$="{{_cx(dicesize,1)}}",
+      <circle 
+        hidden$="{{_hideDots(value, 2)}}"
+        cy$="{{_cy(dicesize,2)}}"
+	      cx$="{{_cx(dicesize,2)}}"
 	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,1,color,dotcolor)}}">
+        >
       </circle>	
-      <circle cy$="{{_cy(dicesize,2)}}",
-	      cx$="{{_cx(dicesize,2)}}",
+      <circle 
+        hidden$="{{_hideDots(value, 3)}}"
+        cy$="{{_cy(dicesize,3)}}"
+	      cx$="{{_cx(dicesize,3)}}"
 	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,2,color,dotcolor)}}">
+        >
       </circle>	
-      <circle cy$="{{_cy(dicesize,3)}}",
-	      cx$="{{_cx(dicesize,3)}}",
+      <circle 
+        hidden$="{{_hideDots(value, 4)}}"
+        cy$="{{_cy(dicesize,4)}}"
+	      cx$="{{_cx(dicesize,4)}}"
 	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,3,color,dotcolor)}}">
+        >
+      </circle>
+      <circle 
+        hidden$="{{_hideDots(value, 5)}}"
+        cy$="{{_cy(dicesize,5)}}"
+	      cx$="{{_cx(dicesize,5)}}"
+	      r$="{{_part(dicesize,9)}}"
+        >
       </circle>	
-      <circle cy$="{{_cy(dicesize,5)}}",
-	      cx$="{{_cx(dicesize,5)}}",
+      <circle 
+        hidden$="{{_hideDots(value, 6)}}"
+        cy$="{{_cy(dicesize,6)}}"
+	      cx$="{{_cx(dicesize,6)}}"
 	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,5,color,dotcolor)}}">
+        >
       </circle>	
-      <circle cy$="{{_cy(dicesize,6)}}",
-	      cx$="{{_cx(dicesize,6)}}",
+      <circle
+        hidden$="{{_hideDots(value, 7)}}"
+        cy$="{{_cy(dicesize,7)}}"
+	      cx$="{{_cx(dicesize,7)}}"
 	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,6,color,dotcolor)}}">
-      </circle>	
-      <circle cy$="{{_cy(dicesize,7)}}",
-	      cx$="{{_cx(dicesize,7)}}",
-	      r$="{{_part(dicesize,9)}}"
-	      fill$="{{_ccolor(value,7,color,dotcolor)}}">
+        >
       </circle>	
     </svg>
-    <span>
   </template>
-
-  <script>
-    Polymer({
-
-      is: 'co-dice',
-
-      properties: {
-          dicesize: {
-              type: Number,
-              value: 50,
-          },
-          value: {
-              type: Number,
-              value: 6,
-          } ,
-	  dotcolor: {
-	      type: String,
-	      value: 'white'
-	  },
-	  color: {
-	      type: String,
-	      value: 'red'
-	  }
+</dom-module>
+<script>
+  Polymer({
+    is: 'co-dice',
+    properties: {
+      /**
+      * Number for storing dicesize
+      *
+      * @attribute dicesize
+      * @type Number
+      * @default 50
+      */
+      dicesize: {
+        type: Number,
+        value: 50,
       },
-	_ccolor: function(value,pos,color,dotcolor){
+      /**
+      * Number for storing dice roll
+      *
+      * @attribute value
+      * @type Number
+      * @default 6
+      */
+      value: {
+        type: Number,
+        value: 6,
+      }
+    },
+    /**
+    * Method to calculate
+    * if position should be hidden
+    *
+    */
+    _hideDots: function(value, pos){
 	    if ( (value == 1 || value == 5 || value == 3 ) && pos == 4 ){
-		return dotcolor;
+        return false;
 	    }
-	    if ( (value == 5 || value == 6 || value == 4 || value == 2 || value == 3)
-		&& (pos == 1 || pos == 7) ){
-		    return dotcolor;
+	    if ( (value == 5 || value == 6 || value == 4 || value == 2 || value == 3) && (pos == 1 || pos == 7) ){
+		    return false;
 	    }
 	    if ( value == 6 && ( pos == 2 || pos == 6 )){
-		return dotcolor;
+        return false;
 	    }
 	    if ((value == 5 || value == 6 || value == 4) && (pos == 3 || pos ==5) ){
-		return dotcolor;
+        return false;
 	    }
-	    return color;
-	},
-	_cx: function(dicesize,pos){
-	    if (pos == 4 ){
-		return dicesize / 2;
-	    }
-	    if (pos == 1 || pos == 2 || pos == 3){
-		return dicesize / 4;
-	    }
-	    if (pos == 5 || pos == 6 || pos == 7){
-		return dicesize - dicesize / 4;
-	    }
-	},
-	_cy: function(dicesize,pos){
-	    if ( pos == 2 || pos == 4 || pos == 6) {
-		return dicesize / 2;
-	    }
-	    if (pos == 1 || pos == 5 ) {
-		return dicesize / 4;
-	    }
-	    if (pos == 3 || pos == 7){
-		return dicesize - dicesize/4;
-	    }
-	},
-	_part: function(dicesize,p){
-	    return (+ dicesize)/p;
-	},
-	roll: function(value){
-	    alert('tu sam');
-	    this.value = Math.floor((Math.random() * 6) + 1);
-	}
-    });
-  </script>
-</dom-module>
+        return true;
+    },
+    /**
+    * 
+    *
+    */
+    _cx: function(dicesize,pos){
+      if (pos == 4 ){
+        return dicesize / 2;
+      }
+      if (pos == 1 || pos == 2 || pos == 3){
+        return dicesize / 4;
+      }
+      if (pos == 5 || pos == 6 || pos == 7){
+        return dicesize - dicesize / 4;
+      }
+    },
+    /**
+    * 
+    *
+    */
+    _cy: function(dicesize,pos){
+      if ( pos == 2 || pos == 4 || pos == 6) {
+        return dicesize / 2;
+      }
+      if (pos == 1 || pos == 5 ) {
+        return dicesize / 4;
+      }
+      if (pos == 3 || pos == 7){
+        return dicesize - dicesize/4;
+      }
+    },
+    /**
+    * 
+    *
+    */
+    _part: function(dicesize,p){
+      return (+ dicesize)/p;
+    },
+    /**
+    * 
+    *
+    */
+    roll: function(){
+      alert('tu sam');
+      this.value = Math.floor((Math.random() * 6) + 1);
+    }
+  });
+</script>
